@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/allrequest', 'RequestController@index')->name('allrequest');
+Route::get('/addrequest', 'RequestController@create')->name('addrequest');
+Route::post('/storerequest', 'RequestController@store')->name('storerequest');
