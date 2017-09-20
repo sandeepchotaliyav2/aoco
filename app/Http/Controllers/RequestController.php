@@ -2,21 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Request;
+use Auth;
+use App\CRMRequest;
 use App\Http\Controllers\Controller;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
-class RequestController extends Controller
-{
+class RequestController extends Controller {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
-        $allData = Request::all();
+        // $allData = Request::all();
     }
 
     /**
@@ -24,9 +33,8 @@ class RequestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('requests.addrequest');
     }
 
     /**
@@ -35,9 +43,16 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        if (Auth::check()) {
+            // The user is logged in...
+            $newRequest = new CRMRequest;
+            $allInputs = $request->all();
+            $newRequest->fill($allInputs);
+            $newRequest->user_id = Auth::id();
+            $newRequest->save();
+            print_r($allInputs);
+        }
     }
 
     /**
@@ -46,8 +61,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -57,8 +71,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         //
     }
 
@@ -69,8 +82,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -80,8 +92,8 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
     }
+
 }
