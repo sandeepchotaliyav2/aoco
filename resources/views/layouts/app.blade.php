@@ -101,7 +101,7 @@
       <ul class="sidebar-menu" data-widget="tree">
        
         <li><a href="#"><i class="fa fa-plus"></i> <span>Add User</span></a></li>
-        <li><a href="#"><i class="fa fa-random"></i> <span>Create Request</span></a></li>
+        <li><a href="{{route('create_request')}}"><i class="fa fa-random"></i> <span>Create Request</span></a></li>
         <!-- <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
       </ul>
     </section>

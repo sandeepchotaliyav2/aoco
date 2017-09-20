@@ -116,8 +116,8 @@
             <span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Default Modal</h4>
         </div>
-        
-        <form method="post" enctype="multipart/form-data">
+
+        <form method="post" action="{{ route('adminUploadFile') }}" enctype="multipart/form-data">
          {{ csrf_field() }}
         <div class="modal-body">
           

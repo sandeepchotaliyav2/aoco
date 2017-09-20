@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/create_request', 'HomeController@create_request')->name('create_request');
+Route::post('/adminUploadFile', 'HomeController@adminUploadFile')->name('adminUploadFile');
 Route::get('/allrequest', 'RequestController@index')->name('allrequest');

@@ -21,7 +21,7 @@
                     </span> @endif
 
                 </div>
-
+`
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
                     <!-- <label for="password" class="col-md-4 control-label">Password</label> -->
 
