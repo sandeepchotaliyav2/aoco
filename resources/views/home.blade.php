@@ -21,80 +21,49 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <h3 class="box-title">CRM Request List</h3>
             </div>
+            <div class="form-group" style="margin:15px;">
+                <a href="{{route('addrequest')}}" class="btn btn-info">Add Request</a>
+            </div>
+
+            
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                  <th>Upload files</th>
+                  <th>Id</th>
+                  <th>CRM Case</th>
+                  <th>Work Type</th>
+                  <th>Sub Work Type</th>
+                  <th>Case Type</th>
+                  <th>RM Case</th>
+                  <th>Email Subject</th>
+                  <th>Start Date</th>
+                  <th>Due Date</th>
+                  <th>Comments</th>
+                  <th>Edit Rquest</th>
+                  <th>Upload Files</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php foreach($data as $request){?>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
-                  <td><button type="button" class="btn btn-default openDialog" data-toggle="modal" data-id="1">Upload files</button></td>
+                  <td>{{ $request['id'] }}</td>
+                  <td>{{ $request['crm_case'] }}</td>
+                  <td>{{ $request['work_type'] }}</td>
+                  <td>{{ $request['sub_work_type'] }}</td>
+                  <td>{{ $request['case_type'] }}</td>
+                  <td>{{ $request['rm_case'] }}</td>
+                  <td>{{ $request['email_subject'] }}</td>
+                  <td>{{ $request['start_date'] }}</td>
+                  <td>{{ $request['due_date'] }}</td>
+                  <td>{{ $request['comment'] }}</td>
+                  <td><a href="{{route('addrequest')}}" class="btn btn-success">Edit</a></td>
+                  <td><button type="button" class="btn btn-default openDialog" data-toggle="modal" data-id="{{$request['id']}}">Upload files</button></td>
                 </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                  <td><button type="button" class="btn btn-default openDialog" data-toggle="modal" data-id="2">Upload files</button></td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td>A</td>
-                  <td><button type="button" class="btn btn-default openDialog" data-toggle="modal" data-id="3">Upload files</button></td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 6
-                  </td>
-                  <td>Win 98+</td>
-                  <td>6</td>
-                  <td>A</td>
-                  <td><button type="button" class="btn btn-default openDialog" data-toggle="modal" data-id="4">Upload files</button></td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet Explorer 7</td>
-                  <td>Win XP SP2+</td>
-                  <td>7</td>
-                  <td>A</td>
-                  <td><button type="button" class="btn btn-default openDialog" data-toggle="modal" data-id="5">Upload files</button></td>
-                </tr>
-                
-                </tbody>
-                <tfoot>
-                <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
-                </tr>
+                <?php }?>
                 </tfoot>
               </table>
             </div>
