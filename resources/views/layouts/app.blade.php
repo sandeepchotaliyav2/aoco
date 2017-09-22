@@ -100,8 +100,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
        
-        <li><a href="#"><i class="fa fa-plus"></i> <span>Add User</span></a></li>
-        <li><a href="{{route('create_request')}}"><i class="fa fa-random"></i> <span>Create Request</span></a></li>
+        <li><a href="{{route('userlist')}}"><i class="fa fa-plus"></i> <span>Users</span></a></li>
+        <li><a href="{{route('home')}}"><i class="fa fa-random"></i> <span>Request</span></a></li>
         <!-- <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
       </ul>
     </section>
@@ -128,6 +128,7 @@
     <!-- <script src="{{ asset('js/pages/dashboard2.js') }}"></script> -->
     <script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/demo.js') }}"></script>
+    <script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.select.min.js') }}"></script>
+    <!-- <script src="{{ asset('js/demo.js') }}"></script> -->
 </body>
 </html>

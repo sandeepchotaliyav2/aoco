@@ -26,7 +26,9 @@
             <div class="form-group" style="margin:15px;">
                 <a href="{{route('addrequest')}}" class="btn btn-info">Add Request</a>
             </div>
-
+            <!-- @if(Session::has('status'))
+            <p class="alert alert-info">{{ Session::get('status') }}</p>
+            @endif -->
             
             <!-- /.box-header -->
             <div class="box-body">
