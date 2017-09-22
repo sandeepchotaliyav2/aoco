@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\CRMRequest;
+use App\Master;
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -24,8 +26,11 @@ class RequestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        //
-        // $allData = Request::all();
+        
+        $requestData = CRMRequest::all();
+        $requestData['data'] = $requestData->toArray();
+        return view('requests.index',$requestData);
+        
     }
 
     /**
@@ -50,8 +55,13 @@ class RequestController extends Controller {
             $allInputs = $request->all();
             $newRequest->fill($allInputs);
             $newRequest->user_id = Auth::id();
+            $newRequest->start_date = date('Y-m-d', strtotime($request->start_date));
+            $newRequest->due_date = date('Y-m-d', strtotime($request->due_date));
             $newRequest->save();
-            print_r($allInputs);
+            
+            //store status message
+            Session::flash('success_msg', 'Request added successfully!');
+            return redirect()->route('allrequests');
         }
     }
 
@@ -62,7 +72,8 @@ class RequestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
+        
+        return view('requests.view', ['crmreq' => CRMRequest::findOrFail($id)]);
     }
 
     /**
@@ -72,7 +83,23 @@ class RequestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //
+        
+        /**
+         * Find drop-down data from "Masters" Table
+         */
+        $workType = Master::all()->where('type','work');
+        $mduType = Master::all()->where('type','mdu');
+        $caseType = Master::all()->where('type','casetype');
+        
+        $requestData = CRMRequest::find($id);
+        
+        $requestData['data'] = $requestData->toArray(); 
+        $requestData['worktype'] = $workType->toArray();
+        $requestData['mdutype'] = $mduType->toArray();
+        $requestData['casetype'] = $caseType->toArray();
+        
+        //return view('requests.editrequest')->with('crmreq', $request);
+        return view('requests.editrequest',$requestData);
     }
 
     /**
@@ -83,7 +110,10 @@ class RequestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        
+        $updateData = $request->all();
+        CRMRequest::find($id)->update($updateData);
+        return redirect()->route('allrequests');
     }
 
     /**
@@ -93,7 +123,9 @@ class RequestController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        //
+        
+        CRMRequest::find($id)->delete();
+        return redirect()->route('allrequests');
     }
 
 }
