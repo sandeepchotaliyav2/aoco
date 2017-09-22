@@ -71,4 +71,14 @@ class UserController extends Controller
         $requestData['data'] = $requestData->toArray();
         return view('user.list',$requestData);
     }
+
+    public function destroy(Request $request) {
+        $id = implode(",", $request->user_id);
+        if(User::find($id)->delete()){
+            $res['msg'] = "user deleted successfully";
+            $res['status'] = "1";
+            return json_encode($res);
+        }
+        
+    }
 }

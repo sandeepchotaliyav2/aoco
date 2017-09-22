@@ -31,7 +31,7 @@
                 <tbody>
                 <?php $i = 1; foreach($data as $request){?>
                 <tr>
-                  <td></td>
+                  <td data-id="{{$request['id']}}"></td>
                   <td>{{ $i }}</td>
                   <td>{{ $request['email'] }}</td>
                   <td>{{ $request['name'] }}</td>
@@ -71,14 +71,30 @@
     } );
     $('#delete_user').on('click', function(e){
       
-      console.log(table.column(0));
-      var rows_selected = table.column(0).checkboxes.selected();
+      //console.log(table.column(0));
+      //var rows_selected = table.column(0).checkboxes.selected();
+      var selectedCheckboxes = [];
 
       // Iterate over all selected checkboxes
-      $.each(rows_selected, function(index, rowId){
-         // Create a hidden element
-         alert(rowId);
+      $.each($('.select-checkbox'), function(index, value){
+        if($(this).parent().hasClass('selected')) {
+          selectedCheckboxes.push($(this).data('id'));
+        }
       });
+      $.ajax({   
+          type: "POST",  
+          url: "../public/delete_user",  
+          data: {user_id : selectedCheckboxes,_token:'<?php echo csrf_token(); ?>'}  ,
+        success: function(response)  
+        {   
+          console.log('dasdsasad',response);
+          if(response.status == 1){
+            alert('User deleted successfully');
+            //window.location = "http://localhost/aoco/public/userlist";
+          }
+        }   
+      });
+      console.log(selectedCheckboxes);
    });
     });
     //$('.select-checkbox').parent().hasClass('selected');

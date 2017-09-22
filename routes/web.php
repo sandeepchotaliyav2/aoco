@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/adduser', 'UserController@index')->name('adduser');
 Route::post('/create', 'UserController@create')->name('create');
+Route::post('/delete_user', 'UserController@destroy')->name('delete_user');
 Route::get('/userlist', 'UserController@userlist')->name('userlist');
 Route::get('/create_request', 'HomeController@create_request')->name('create_request');
 Route::post('/adminUploadFile', 'HomeController@adminUploadFile')->name('adminUploadFile');
