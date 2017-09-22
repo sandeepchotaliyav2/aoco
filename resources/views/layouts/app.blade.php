@@ -97,7 +97,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li><a href="{{route('userlist')}}"><i class="fa fa-plus"></i> <span>Users</span></a></li>
-        <li><a href="{{route('home')}}"><i class="fa fa-random"></i> <span>Request</span></a></li>
+        <li><a href="{{route('allrequests')}}"><i class="fa fa-random"></i> <span>Requests</span></a></li>
         <!-- <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
       </ul>
     </section>
