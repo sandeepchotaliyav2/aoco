@@ -101,7 +101,7 @@
       <ul class="sidebar-menu" data-widget="tree">
        
         <li><a href="#"><i class="fa fa-plus"></i> <span>Add User</span></a></li>
-        <li><a href="{{route('create_request')}}"><i class="fa fa-random"></i> <span>Create Request</span></a></li>
+        <li><a href="#"><i class="fa fa-random"></i> <span>Create Request</span></a></li>
         <!-- <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
       </ul>
     </section>
@@ -109,8 +109,9 @@
   </aside>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
-
+        @if(Session::has('success_msg'))
+        <div class="alert alert-success">{{ Session::get('success_msg') }}</div>
+        @endif
         @yield('content')
     </div>
 </div>
